@@ -96,3 +96,4 @@ def run_health_app():
 
 run_health_app()
 # This code is a refactored version of the health calculator application.
+# Note to self - Tyhe code asks for input muktiple times, which is not ideal for user experience. İn order to fix this we need to pass the inputs as arguments to the functions instead of asking for them inside the functions.
