@@ -21,5 +21,6 @@ df['salary'].fillna(df['salary'].mean(), inplace=True)
 df.drop_duplicates(inplace=True)
 df['Tenure']= 2025 - df['joining_date'].dt.year
 
-
+df.to_csv('Week_1/Day_5/employee_cleaned.csv', index=False)
 pretty(df)
+
