@@ -20,6 +20,8 @@ df[['department_hr', 'department_sales']] = df[['department_hr', 'department_sal
 df['Tenure'].fillna(df['Tenure'].median(), inplace=True) 
 df.fillna(df['joining_date'].mode()[0], inplace=True) 
 
+df.to_csv('Week_1/Day_7/employee_prepared.csv', index=False)
+
 
 
 
