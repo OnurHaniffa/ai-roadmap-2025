@@ -26,11 +26,11 @@ pretty(df_numeric)
 pretty(df_categorical)
 pretty(df_datetime)
 
-# for col in df_numeric.columns:
-#     plt.figure()
-#     sns.histplot(bins=30,data=df_numeric, x=col, kde=True)
-#     plt.title(f'Distribution of {col}')
-#     plt.show()
+for col in df_numeric.columns:
+    plt.figure()
+    sns.histplot(bins=30,data=df_numeric, x=col, kde=True)
+    plt.title(f'Distribution of {col}')
+    plt.show()
 
 # for col in df_numeric.columns:
 #     plt.figure()
@@ -41,11 +41,11 @@ pretty(df_datetime)
 # sns.pairplot(df_numeric)
 # plt.show()
 
-# corr_matrix = df_numeric.corr()
-# plt.figure(figsize=(10, 8))
-# sns.heatmap(data=corr_matrix, annot=True, fmt=".2f", cmap='magma', square=True, cbar_kws={"shrink": .8})
-# plt.title('Correlation Matrix')
-# plt.show()
+corr_matrix = df_numeric.corr()
+plt.figure(figsize=(10, 8))
+sns.heatmap(data=corr_matrix, annot=True, fmt=".2f", cmap='magma', square=True, cbar_kws={"shrink": .8})
+plt.title('Correlation Matrix')
+plt.show()
 
 
 # for col in df_categorical.columns:
@@ -85,3 +85,4 @@ df['joining day'] = df['joining_date'].dt.day
 
 df.to_csv('Week_1/Day_6/employee_analysis.csv', index=False)
 pretty(df)
+
