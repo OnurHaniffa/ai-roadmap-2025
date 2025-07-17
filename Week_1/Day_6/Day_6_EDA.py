@@ -86,3 +86,32 @@ df['joining day'] = df['joining_date'].dt.day
 df.to_csv('Week_1/Day_6/employee_analysis.csv', index=False)
 pretty(df)
 
+
+
+
+
+
+
+import pandas as pd 
+from tabulate import tabulate
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+def pretty(data):
+    print(tabulate(data, headers='keys', tablefmt='fancy_grid'))
+
+
+
+df = pd.read_csv("hr_data.csv")
+df.head()
+df.describe()
+df.info()               
+
+df.numerical_columns = df.select_dtypes(include=['int64', 'float64']).columns
+df.categorical_columns = df.select_dtypes(include=['object']).columns
+
+pretty(df[df.numerical_columns].head())
+pretty(df[df.categorical_columns].head())
+
+
+
