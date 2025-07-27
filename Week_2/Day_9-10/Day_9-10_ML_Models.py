@@ -12,19 +12,17 @@ from sklearn.ensemble import RandomForestClassifier
 from imblearn.over_sampling import SMOTE
 import matplotlib.pyplot as plt
 
-# -----------------------
-# Load dataset
-# -----------------------
-df = pd.read_csv("employee_analysis.csv")  # Make sure this CSV exists
-X = df.drop(columns=['Attrition'])
-y = df['Attrition']
 
-# Train/test split
+df = pd.read_csv('Week_2/Day_8/hr_data_ML_ready.csv')
+X = df.drop(columns=['Attrition_num'])
+y = df['Attrition_num']
+
+
 x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
-# -----------------------
+# ------------------------------------------------------------------------------------------------------------------------------
 # KNN: Tune k and evaluate
-# -----------------------
+# ------------------------------------------------------------------------------------------------------------------------------
 k_values = range(1, 21)
 knn_acc, knn_prec, knn_rec, knn_f1 = [], [], [], []
 
@@ -51,9 +49,9 @@ prec_knn = precision_score(y_test, y_pred_knn)
 rec_knn = recall_score(y_test, y_pred_knn)
 f1_knn = f1_score(y_test, y_pred_knn)
 
-# -----------------------
+# ------------------------------------------------------------------------------------------------------------------------------
 # Decision Tree: Tune max_depth (2–10) and plot
-# -----------------------
+# ------------------------------------------------------------------------------------------------------------------------------
 depth_values = range(2, 11)
 acc_tree, prec_tree, rec_tree, f1_tree = [], [], [], []
 
@@ -86,10 +84,9 @@ for metric_name, values in tree_metrics.items():
     plt.ylabel(metric_name)
     plt.grid(True)
     plt.show()
-
-# -----------------------
+# ------------------------------------------------------------------------------------------------------------------------------
 # Logistic Regression (scaled, no SMOTE)
-# -----------------------
+# ------------------------------------------------------------------------------------------------------------------------------
 log_reg = LogisticRegression(random_state=42, max_iter=1000, class_weight='balanced')
 log_reg.fit(x_train_scaled, y_train)
 y_pred_log = log_reg.predict(x_test_scaled)
@@ -112,9 +109,9 @@ prec_log_smote = precision_score(y_test, y_pred_log_smote)
 rec_log_smote = recall_score(y_test, y_pred_log_smote)
 f1_log_smote = f1_score(y_test, y_pred_log_smote)
 
-# -----------------------
+# ------------------------------------------------------------------------------------------------------------------------------
 # Random Forest (original data, no scaling)
-# -----------------------
+# ------------------------------------------------------------------------------------------------------------------------------
 forest = RandomForestClassifier(n_estimators=100, max_depth=None, random_state=42, n_jobs=-1)
 forest.fit(x_train, y_train)
 y_pred_forest = forest.predict(x_test)
@@ -123,10 +120,9 @@ acc_forest = accuracy_score(y_test, y_pred_forest)
 prec_forest = precision_score(y_test, y_pred_forest)
 rec_forest = recall_score(y_test, y_pred_forest)
 f1_forest = f1_score(y_test, y_pred_forest)
-
-# -----------------------
+# ------------------------------------------------------------------------------------------------------------------------------
 # Random Forest Hyperparameter Tuning
-# -----------------------
+# ------------------------------------------------------------------------------------------------------------------------------
 depth_values = [2, 4, 6, 8, 10]
 split_values = [2, 5, 10]
 weights = [None, 'balanced']
