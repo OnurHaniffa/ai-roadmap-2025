@@ -1,0 +1,8 @@
+id,name,age,salary,department,joining_date,performance_score
+1, Alice ,25,50000,Engineering,2019-06-01,good
+2,Bob,NaN,,sales,2020/07/15,Excellent
+3, Charlie, 35,70000,HR,2018-05-12, Poor
+4,Dana,,65000,Engineering,2021.08.22,excellent
+5,Eve,29,NaN,Sales,,Good
+6,Bob,28,55000,Sales,2020-07-15,Excellent
+7,Frank,NaN,52000,engineering,2020-07-01,GOOD

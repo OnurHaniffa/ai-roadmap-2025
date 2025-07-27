@@ -1,0 +1,28 @@
+# Ignore virtual environment
+.venv/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore Jupyter notebook backups
+.ipynb_checkpoints/
+
+# Ignore VS Code junk
+.vscode/
+
+# Ignore Mac system files
+.DS_Store
+
+# Ignore logs and temp
+*.log
+*.tmp
+.venv/
+__pycache__/
+*.DS_Store
+.vscode/
+.venv/
+__pycache__/
+*.DS_Store
+.vscode/

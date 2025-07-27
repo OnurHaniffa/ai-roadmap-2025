@@ -1,0 +1,28 @@
+import pandas as pd 
+from tabulate import tabulate
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+def pretty(data):
+    print(tabulate(data, headers='keys', tablefmt='fancy_grid'))
+
+
+perf_map={'poor':1,'good':2,'excellent':3}
+df=pd.read_csv('Week_1/Day_6/employee_analysis.csv')
+
+
+df['salary bracket']= pd.cut(df['salary'], bins=[0,60000,100000,1500000], labels=['Low', 'Medium', 'High'])
+df['performance_score']= df['performance_score'].map(perf_map)
+df.drop(columns=['joining year', 'joining month', 'joining day','salary bracket','id','name'], inplace=True)
+df = pd.get_dummies(df, columns=['department'], drop_first=True)
+df[['department_hr', 'department_sales']] = df[['department_hr', 'department_sales']].astype(int)
+df['Tenure'].fillna(df['Tenure'].median(), inplace=True) 
+df.fillna(df['joining_date'].mode()[0], inplace=True) 
+
+df.to_csv('Week_1/Day_7/employee_prepared.csv', index=False)
+
+
+
+
+pretty(df.head())

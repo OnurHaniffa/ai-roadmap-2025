@@ -1,0 +1,8 @@
+id,name,age,salary,department,joining_date,performance_score,Tenure,joining year,joining month,joining day
+1,alice,25.0,50000.0,engineering,2019-06-01,good,6.0,2019.0,6.0,1.0
+2,bob,29.25,58400.0,sales,2020-07-15,excellent,5.0,2020.0,7.0,15.0
+3,charlie,35.0,70000.0,hr,2018-05-12,poor,7.0,2018.0,5.0,12.0
+4,dana,29.25,65000.0,engineering,2021-08-22,excellent,4.0,2021.0,8.0,22.0
+5,eve,29.0,58400.0,sales,,good,,,,
+6,bob,28.0,55000.0,sales,2020-07-15,excellent,5.0,2020.0,7.0,15.0
+7,frank,29.25,52000.0,engineering,2020-07-01,good,5.0,2020.0,7.0,1.0

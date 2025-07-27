@@ -1,0 +1,186 @@
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score,f1_score
+import matplotlib.pyplot as plt
+from sklearn.tree import DecisionTreeClassifier
+df = pd.read_csv('Week_2/Day_8/hr_data_ML_ready.csv')
+
+x=df.drop('Attrition_num', axis=1)
+y=df['Attrition_num']
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+
+scaler = StandardScaler()
+x_train_scaled = scaler.fit_transform(x_train)
+x_test_scaled = scaler.transform(x_test)
+import matplotlib.pyplot  as plt
+print('Frist row of scaled training data:', x_train_scaled[0])
+
+# knn= KNeighborsClassifier(n_neighbors=5)
+# knn.fit(x_train_scaled,y_train)
+# print('Model trained with k=5')
+
+# y_pred=knn.predict(x_test_scaled)
+
+
+
+# accuracy=accuracy_score(y_test,y_pred)
+# precision=precision_score(y_test,y_pred)
+# recall= recall_score(y_test,y_pred)
+# f1=f1_score(y_test,y_pred)
+
+# print(f"Accuracy: {accuracy:.3f}")
+# print(f"Precision: {precision:.3f}")
+# print(f"Recall: {recall:.3f}")
+# print(f"F1 Score: {f1:.3f}")
+
+#-------------------------------------------------------------------------------------------------------------------
+
+# k_values = range(1, 16)
+# accuracies = []
+# precisions = []
+# recalls = []
+# f1_values = []
+
+
+# for k in k_values:
+#     knn = KNeighborsClassifier(n_neighbors=k)
+#     knn.fit(x_train_scaled, y_train)
+#     y_pred = knn.predict(x_test_scaled)
+
+#     accuracies.append(accuracy_score(y_test, y_pred))
+#     precisions.append(precision_score(y_test, y_pred))
+#     recalls.append(recall_score(y_test, y_pred))
+#     f1_values.append(f1_score(y_test, y_pred))
+
+
+# metrics = {
+#     "Accuracy": accuracies,
+#     "Precision": precisions,
+#     "Recall": recalls,
+#     "F1 Score": f1_values
+# }
+
+
+# for metric_name, metric_values in metrics.items():
+#     plt.figure(figsize=(8, 5))
+#     plt.plot(k_values, metric_values, marker='o')
+#     plt.title(f'KNN {metric_name} vs. k')
+#     plt.xlabel('Number of Neighbors (k)')
+#     plt.ylabel(metric_name)
+#     plt.xticks(k_values)
+#     plt.grid(True)
+#     plt.show()
+
+
+# best_k_index = max(range(len(f1_values)), key=lambda i: f1_values[i])
+# best_k = list(k_values)[best_k_index]
+# best_f1 = f1_values[best_k_index]
+
+# print(f"Best k (by F1): {best_k}")
+# print(f"F1 Score at best k: {best_f1:.3f}")
+# print(f"Accuracy at best k: {accuracies[best_k_index]:.3f}")
+# print(f"Precision at best k: {precisions[best_k_index]:.3f}")
+# print(f"Recall at best k: {recalls[best_k_index]:.3f}")
+
+#--------------------------------------------------------------------------------------------------------------------------------
+
+# tree = DecisionTreeClassifier(max_depth=3,criterion='gini',random_state=42)
+# tree.fit(x_train,y_train)
+# y_pred_tree=tree.predict(x_test)
+
+# accuracy = accuracy_score(y_test, y_pred_tree)
+# precision = precision_score(y_test, y_pred_tree)
+# recall = recall_score(y_test, y_pred_tree)
+# f1 = f1_score(y_test, y_pred_tree)
+
+# print(f"Decision Tree (max_depth=3):")
+# print(f"Accuracy: {accuracy:.3f}")
+# print(f"Precision: {precision:.3f}")
+# print(f"Recall: {recall:.3f}")
+# print(f"F1 Score: {f1:.3f}")
+
+
+#-----------------------------------------------------------------------------------------------------------------------------
+
+
+
+# depth_values=range(2,11)
+
+# accuracies_tree = []
+# precisions_tree = []
+# recalls_tree = []
+# f1_scores_tree = []
+
+# for depth in depth_values :
+#     tree = DecisionTreeClassifier(max_depth=depth, criterion='gini', random_state=42)
+#     tree.fit(x_train, y_train)
+#     y_pred = tree.predict(x_test)
+
+#     accuracies_tree.append(accuracy_score(y_test, y_pred))
+#     precisions_tree.append(precision_score(y_test, y_pred))
+#     recalls_tree.append(recall_score(y_test, y_pred))
+#     f1_scores_tree.append(f1_score(y_test, y_pred))
+    
+
+# tree_metrics={'Accuracy:':accuracies_tree,
+#               'Precisions:': precisions_tree,
+#               'Recalls:': recalls_tree,
+#               'F1:': f1_scores_tree}
+
+# for metric_name,values in tree_metrics.items():
+#     plt.figure(figsize=(8,5))
+#     plt.plot(depth_values,values,marker='o')
+#     plt.title(f"Decision Tree {metric_name} vs. Depth")
+#     plt.xlabel("Max Depth")
+#     plt.ylabel(metric_name)
+#     plt.xticks(depth_values)
+#     plt.grid(True)
+#     plt.show()
+
+#----------------------------------------------------------------------------------------------------------------------------
+
+
+best_depth = 10
+best_tree = DecisionTreeClassifier(max_depth=best_depth, criterion='gini', random_state=42)
+best_tree.fit(x_train, y_train)
+y_pred_best_tree = best_tree.predict(x_test)
+
+
+acc_tree = accuracy_score(y_test, y_pred_best_tree)
+prec_tree = precision_score(y_test, y_pred_best_tree)
+rec_tree = recall_score(y_test, y_pred_best_tree)
+f1_tree = f1_score(y_test, y_pred_best_tree)
+
+print(f"\nBest Decision Tree (max_depth={best_depth}):")
+print(f"Accuracy: {acc_tree:.3f}")
+print(f"Precision: {prec_tree:.3f}")
+print(f"Recall: {rec_tree:.3f}")
+print(f"F1 Score: {f1_tree:.3f}")
+
+importances = best_tree.feature_importances_
+feature_names = x_train.columns
+top_features = sorted(zip(feature_names, importances), key=lambda x: x[1], reverse=True)[:5]
+
+print("\nTop 5 Important Features (Decision Tree):")
+for feature, importance in top_features:
+    print(f"{feature}: {importance:.3f}")
+
+
+acc_knn, prec_knn, rec_knn, f1_knn = 0.857, 0.364, 0.103, 0.160  # from earlier
+
+comparison = pd.DataFrame({
+    "Model": ["KNN (best k)", f"Decision Tree (depth={best_depth})"],
+    "Accuracy": [acc_knn, acc_tree],
+    "Precision": [prec_knn, prec_tree],
+    "Recall": [rec_knn, rec_tree],
+    "F1 Score": [f1_knn, f1_tree]
+})
+
+print("\nModel Comparison (KNN vs Decision Tree):")
+print(comparison)
+
+
+
