@@ -82,6 +82,7 @@ def train_log_reg(x_train,x_test,y_train):
     smote=SMOTE(random_state=42)
     x_train_balanced,y_train_balanced=smote.fit_resample(x_train_scaled,y_train)
     model_smote= LogisticRegression(random_state=42,max_iter=1000)
+    model_smote.fit(x_train_scaled,y_train)
 
     return model,model_smote,scaler
 
