@@ -24,4 +24,6 @@ pip install --upgrade pip
 # Install all required packages
 pip install pandas imbalanced-learn numpy matplotlib seaborn scikit-learn tabulate jupyter notebook ipykernel xgboost lightgbm tensorflow torch torchvision torchaudio openpyxl pillow requests
 
+python3 -m ipykernel install --user --name=ai-roadmap --display-name "Python (AI Roadmap)"
+
 echo "✅ Environment setup complete! Activate it anytime with: source .venv/bin/activate"
