@@ -118,11 +118,15 @@ def get_trained_models():
 
     return models, scalers, x_train, x_test, y_train, y_test
 
+
 # ----------------------------------------------------------
 # Debug mode 
 # ----------------------------------------------------------
 if __name__ == "__main__":
     models, scalers, x_train, x_test, y_train, y_test = get_trained_models()
     print("Trained models:", list(models.keys()))
+
+
+
 
 
